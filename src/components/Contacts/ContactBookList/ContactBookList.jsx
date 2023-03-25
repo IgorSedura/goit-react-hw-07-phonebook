@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Btn, Ul, Li } from './ConatactBookListStyles';
+import { Ul, Li } from './ConatactBookListStyles';
 import { Button } from '@chakra-ui/react';
 
 export const PhonebookList = ({ contacts, removeContact }) => {

@@ -1,14 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { initialState } from './initialState';
-import { Container, Label, Btn } from './FormAddConatctStyles';
-import {
-  InputLeftElement,
-  InputGroup,
-  Input,
-  Button,
-  ButtonGroup,
-} from '@chakra-ui/react';
+import { Container, Label } from './FormAddConatctStyles';
+import { InputLeftElement, InputGroup, Input, Button } from '@chakra-ui/react';
 import { PhoneIcon, EditIcon, AddIcon } from '@chakra-ui/icons';
 
 export const FormAddContact = ({ onSubmit }) => {

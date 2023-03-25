@@ -1,6 +1,6 @@
-import { getContacts } from 'services/api';
+// import { getContacts } from 'services/api';
 
-export const fetchContacts = () => {
-  const func = dispatch => {};
-  return func;
-};
+// export const fetchContacts = () => {
+//   const func = dispatch => {};
+//   return func;
+// };
