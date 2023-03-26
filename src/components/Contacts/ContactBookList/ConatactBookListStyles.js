@@ -11,7 +11,7 @@ export const Li = styled.li`
   font-weight: 500;
   font-size: 14px;
 
-  width: 230px;
+  width: 250px;
   margin-left: auto;
   margin-right: auto;
   align-items: flex-end;
