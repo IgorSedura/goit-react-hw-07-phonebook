@@ -1,28 +1,57 @@
-import { nanoid } from 'nanoid';
+import { createSlice } from '@reduxjs/toolkit';
+import {
+  fetchContacts,
+  addContact,
+  removeContact,
+} from './contacts-operations';
 
-const { createSlice } = require('@reduxjs/toolkit');
+const initialState = {
+  items: [],
+  loading: false,
+  error: null,
+};
 
-const contactSlise = createSlice({
+const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: [],
-  reducers: {
-    addContact: {
-      reducer: (store, { payload }) => {
-        store.push(payload);
-      },
-      prepare: data => {
-        return {
-          payload: {
-            ...data,
-            id: nanoid(),
-          },
-        };
-      },
+  initialState,
+  extraReducers: {
+    [fetchContacts.pending]: store => {
+      store.loading = true;
+      store.error = null;
     },
-    removeContact: (store, { payload }) =>
-      store.filter(item => item.id !== payload),
+    [fetchContacts.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.items = payload;
+    },
+    [fetchContacts.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
+    [addContact.padding]: store => {
+      store.loading = true;
+      store.error = null;
+    },
+    [addContact.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.items.push(payload);
+    },
+    [addContact.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
+    [removeContact.padding]: store => {
+      store.loading = true;
+      store.error = null;
+    },
+    [removeContact.fulfilled]: (store, { payload }) => {
+      store.loading = false;
+      store.items = store.items.filter(item => item.id !== payload);
+    },
+    [removeContact.rejected]: (store, { payload }) => {
+      store.loading = false;
+      store.error = payload;
+    },
   },
 });
 
-export const { addContact, removeContact } = contactSlise.actions;
-export default contactSlise.reducer;
+export default contactsSlice.reducer;

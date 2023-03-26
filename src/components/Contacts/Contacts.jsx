@@ -6,32 +6,33 @@ import { FormAddContact } from './FormAddConatact/FormAddContact';
 import { PhonebookList } from './ContactBookList/ContactBookList';
 import { Container } from './ConatactsStyles';
 import { useSelector, useDispatch } from 'react-redux';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { setFilter } from 'redux/filterSlise';
 import { InputLeftElement, InputGroup, Input } from '@chakra-ui/react';
 
 import { getFilterContacts } from 'redux/selector';
-import { addContact, removeContact } from 'redux/contactsSlise';
+import { addContact, removeContact } from 'redux/contacts-operations';
 import { Search2Icon } from '@chakra-ui/icons';
-// import { fetchContacts } from 'redux/contacts-operations';
+import { fetchContacts } from 'redux/contacts-operations';
 // import toast, { Toaster } from 'react-hot-toast';
 
 export const Contacts = () => {
   const contacts = useSelector(getFilterContacts);
+
   const dispatch = useDispatch();
   const filter = useSelector(store => store.filter);
 
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const onAddContact = payload => {
     const action = addContact(payload);
     dispatch(action);
   };
 
-  const onRemoveContact = payload => {
-    dispatch(removeContact(payload));
+  const onRemoveContact = id => {
+    dispatch(removeContact(id));
   };
 
   const onSetFilter = ({ target }) => {
@@ -53,6 +54,7 @@ export const Contacts = () => {
             value={filter}
             type="text"
             boxShadow="md"
+            marginBottom={5}
           />
         </InputGroup>
       </Container>

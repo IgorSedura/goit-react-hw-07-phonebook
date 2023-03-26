@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { initialState } from './initialState';
-import { Container, Label } from './FormAddConatctStyles';
-import { InputLeftElement, InputGroup, Input, Button } from '@chakra-ui/react';
+import { Container } from './FormAddConatctStyles';
+import {
+  InputLeftElement,
+  InputGroup,
+  Input,
+  Button,
+  Heading,
+  FormLabel,
+} from '@chakra-ui/react';
 import { PhoneIcon, EditIcon, AddIcon } from '@chakra-ui/icons';
 
 export const FormAddContact = ({ onSubmit }) => {
@@ -26,7 +33,8 @@ export const FormAddContact = ({ onSubmit }) => {
     <form onSubmit={handleSubmit}>
       <Container>
         <div>
-          <Label>Name</Label>
+          <Heading marginBottom={5}>Phonebook</Heading>
+          <FormLabel>Name</FormLabel>
           <InputGroup>
             <Input
               variant="filled"
@@ -40,12 +48,13 @@ export const FormAddContact = ({ onSubmit }) => {
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
               boxShadow="md"
+              marginBottom={2}
             />
             <InputLeftElement children={<EditIcon color="teal" />} />
           </InputGroup>
         </div>
         <div>
-          <Label>Number</Label>
+          <FormLabel>Number</FormLabel>
           <InputGroup>
             <InputLeftElement
               pointerEvents="none"
@@ -65,17 +74,6 @@ export const FormAddContact = ({ onSubmit }) => {
               boxShadow="md"
             />
           </InputGroup>
-          {/* <Label>Number</Label>
-          <Input
-            value={number}
-            onChange={handleChange}
-            placeholder="Введіть номер"
-            type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          /> */}
         </div>
         <div>
           <Button
